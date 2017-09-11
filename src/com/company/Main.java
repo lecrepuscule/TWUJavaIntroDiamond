@@ -36,8 +36,8 @@ public class Main {
         return padding.replace(padding.length() -1, padding.length(), "");
     }
 
-    public static void main(String[] args) {
-        int n = Integer.parseInt(args[0]);
+    public static String[] printIsoscelesTriangle(String num) {
+        int n = Integer.parseInt(num);
         StringBuffer paddedS = new StringBuffer("*");
         StringBuffer stringPadding = getSpacePadding(n);
         StringBuffer paddedLine = padSpace(paddedS, stringPadding);
@@ -51,10 +51,20 @@ public class Main {
             diamond[i] = padSpace(paddedS, stringPadding).toString();
             System.out.println(diamond[i]);
         }
-        
+
+        return diamond;
+    }
+
+    public static void printDiamond(String num) {
+        String[] diamond = printIsoscelesTriangle(num);
+
         for (int i = diamond.length-2; i >= 0; i--) {
             System.out.println(diamond[i]);
         }
 
+    }
+
+    public static void main(String[] args) {
+        printDiamond(args[0]);
     }
 }
