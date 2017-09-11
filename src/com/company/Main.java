@@ -41,13 +41,19 @@ public class Main {
         StringBuffer paddedS = new StringBuffer("*");
         StringBuffer stringPadding = getSpacePadding(n);
         StringBuffer paddedLine = padSpace(paddedS, stringPadding);
-        System.out.println(paddedLine);
+        String[] diamond = new String[n];
+        diamond[0] = paddedLine.toString();
+        System.out.println(diamond[0]);
 
         for (int i = 1; i < n; i++) {
             paddedS = padAsterisk(paddedS);
             stringPadding = reducePadding((stringPadding));
-            System.out.println(padSpace(paddedS, stringPadding));
-
+            diamond[i] = padSpace(paddedS, stringPadding).toString();
+            System.out.println(diamond[i]);
+        }
+        
+        for (int i = diamond.length-2; i >= 0; i--) {
+            System.out.println(diamond[i]);
         }
 
     }
