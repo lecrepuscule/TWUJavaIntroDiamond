@@ -36,35 +36,55 @@ public class Main {
         return padding.replace(padding.length() -1, padding.length(), "");
     }
 
-    public static String[] printIsoscelesTriangle(String num) {
+    public static String[] makeIsoscelesTriangle(String num){
         int n = Integer.parseInt(num);
         StringBuffer paddedS = new StringBuffer("*");
         StringBuffer stringPadding = getSpacePadding(n);
         StringBuffer paddedLine = padSpace(paddedS, stringPadding);
-        String[] diamond = new String[n];
-        diamond[0] = paddedLine.toString();
-        System.out.println(diamond[0]);
+        String[] isoTriangle = new String[n];
+        isoTriangle[0] = paddedLine.toString();
 
         for (int i = 1; i < n; i++) {
             paddedS = padAsterisk(paddedS);
             stringPadding = reducePadding((stringPadding));
-            diamond[i] = padSpace(paddedS, stringPadding).toString();
-            System.out.println(diamond[i]);
+            isoTriangle[i] = padSpace(paddedS, stringPadding).toString();
         }
 
-        return diamond;
+        return isoTriangle;
     }
 
-    public static void printDiamond(String num) {
-        String[] diamond = printIsoscelesTriangle(num);
-
-        for (int i = diamond.length-2; i >= 0; i--) {
-            System.out.println(diamond[i]);
+    public static void printIsoscelesTriangle(String[] isoTriangle) {
+        for (int i = 0; i < isoTriangle.length; i++) {
+            System.out.println(isoTriangle[i]);
         }
+    }
 
+    public static void printDiamond(String[] isoTriangle) {
+        printIsoscelesTriangle(isoTriangle);
+        for (int i = isoTriangle.length-2; i >= 0; i--) {
+            System.out.println(isoTriangle[i]);
+        }
+    }
+
+    public static void printDiamondWithName(String[] isoTriangle){
+        StringBuffer name = new StringBuffer(isoTriangle[isoTriangle.length-1]);
+        int padding = name.length() / 2;
+        StringBuffer spacePadding = getSpacePadding(padding);
+        StringBuffer myName = new StringBuffer("Yao");
+        isoTriangle[isoTriangle.length-1] = padSpace(myName, spacePadding).toString();
+        printDiamond(isoTriangle);
     }
 
     public static void main(String[] args) {
-        printDiamond(args[0]);
+        String[] isoTriangle = makeIsoscelesTriangle(args[0]);
+
+        System.out.println("print triangle: ");
+        printIsoscelesTriangle(isoTriangle);
+
+        System.out.println("print diamond: ");
+        printDiamond(isoTriangle);
+
+        System.out.println("print diamond with name: ");
+        printDiamondWithName(isoTriangle);
     }
 }
